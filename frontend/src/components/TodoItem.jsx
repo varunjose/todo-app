@@ -2,12 +2,15 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+// Use the environment variable for the API URL or fallback to localhost
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+
 const TodoItem = ({ todo, onDelete, onUpdate }) => {
   const [isPinned, setIsPinned] = useState(todo.pinned);
 
   const togglePin = async () => {
     try {
-      const response = await axios.patch(`http://localhost:4000/api/todos/${todo._id}/pin`);
+      const response = await axios.patch(`${API_URL}/todos/${todo._id}/pin`);
       setIsPinned(response.data.pinned);
       onUpdate();
     } catch (error) {
@@ -17,7 +20,7 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
 
   const deleteTodo = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/todos/${todo._id}`);
+      await axios.delete(`${API_URL}/todos/${todo._id}`);
       onDelete(todo._id);
     } catch (error) {
       console.error('Error deleting todo:', error);

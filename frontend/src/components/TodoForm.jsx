@@ -11,6 +11,9 @@ const TodoForm = ({ setTodos }) => {
   const [time, setTime] = useState(new Date());
   const [priority, setPriority] = useState('low');
 
+  // Use the environment variable for API URL or default to localhost
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,7 +25,7 @@ const TodoForm = ({ setTodos }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/api/todos', newTodo);
+      const response = await axios.post(`${API_URL}/todos`, newTodo);
       setTodos((prevTodos) => [...prevTodos, response.data]);
       setTitle('');
       setText('');
@@ -34,13 +37,17 @@ const TodoForm = ({ setTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 ">
-      <div className='flex items-center space-x-0 '><DotLottieReact
-      src="https://lottie.host/c3402948-1ee3-488f-941b-aa3ca4d9970e/tscAhf0BUo.lottie"
-      loop
-      autoplay
-      style={{ width: '100px', height: '50px', margin: '0'}}
-    /><h2 className="text-[25px] font-bold">Add an Event</h2></div>
+    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+      <div className='flex items-center space-x-2'>
+        <DotLottieReact
+          src="https://lottie.host/c3402948-1ee3-488f-941b-aa3ca4d9970e/tscAhf0BUo.lottie"
+          loop
+          autoplay
+          style={{ width: '100px', height: '50px', margin: '0' }}
+        />
+        <h2 className="text-[25px] font-bold">Add an Event</h2>
+      </div>
+
       <input
         type="text"
         placeholder="Title"
