@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 // Middleware for CORS
 const corsOptions = {
   origin: ['https://varunjose.github.io', 'https://todo-app-ftb6.onrender.com'], // Add more origins if needed
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
