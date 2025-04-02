@@ -1,0 +1,49 @@
+// src/pages/Home.jsx
+import { useState, useEffect } from 'react';
+import TodoForm from '../components/ToDoForm';
+import TodoList from '../components/TodoList';
+import axios from 'axios';
+
+const HomePage = () => {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/todos');
+        setTodos(response.data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
+    fetchTodos();
+  }, []);
+
+  const handleDelete = (id) => {
+    setTodos(todos.filter(todo => todo._id !== id));
+  };
+
+  const handleUpdate = () => {
+    // This will re-fetch the todos
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/todos');
+        setTodos(response.data);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
+    fetchTodos();
+  };
+
+  return (
+    <div className="container mx-auto p-6">
+      <TodoForm setTodos={setTodos} />
+      <TodoList todos={todos} onDelete={handleDelete} onUpdate={handleUpdate} />
+    </div>
+  );
+};
+
+export default HomePage;
