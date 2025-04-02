@@ -8,10 +8,10 @@ const todoRoutes = require('./routes/todoRoutes');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({ origin: 'https://varunjose.github.io' }));
 app.use(express.json()); // Parse incoming JSON requests
 
 // MongoDB Atlas Connection URI (replace with your URI)
