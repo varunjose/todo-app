@@ -1,11 +1,14 @@
-// src/components/TodoForm.jsx
 import { useState } from 'react';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import 'boxicons';
 
 const TodoForm = ({ setTodos }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(new Date());
   const [priority, setPriority] = useState('low');
 
   const handleSubmit = async (e) => {
@@ -23,7 +26,7 @@ const TodoForm = ({ setTodos }) => {
       setTodos((prevTodos) => [...prevTodos, response.data]);
       setTitle('');
       setText('');
-      setTime('');
+      setTime(new Date());
       setPriority('low');
     } catch (error) {
       console.error('Error adding todo:', error);
@@ -31,8 +34,13 @@ const TodoForm = ({ setTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-gray-200 rounded-md shadow-md">
-      <h2 className="text-xl font-bold">Add Todo</h2>
+    <form onSubmit={handleSubmit} className="space-y-4 p-4 ">
+      <div className='flex items-center space-x-0 '><DotLottieReact
+      src="https://lottie.host/c3402948-1ee3-488f-941b-aa3ca4d9970e/tscAhf0BUo.lottie"
+      loop
+      autoplay
+      style={{ width: '100px', height: '50px', margin: '0'}}
+    /><h2 className="text-[25px] font-bold">Add an Event</h2></div>
       <input
         type="text"
         placeholder="Title"
@@ -48,12 +56,14 @@ const TodoForm = ({ setTodos }) => {
         className="p-2 w-full border rounded"
         required
       />
-      <input
-        type="datetime-local"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
+      <DatePicker
+        selected={time}
+        onChange={(date) => setTime(date)}
+        showTimeSelect
+        dateFormat="Pp"
         className="p-2 w-full border rounded"
         required
+        placeholderText="Select Date and Time"
       />
       <select
         value={priority}

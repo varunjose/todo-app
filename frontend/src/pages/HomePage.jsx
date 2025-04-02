@@ -39,9 +39,16 @@ const HomePage = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <TodoForm setTodos={setTodos} />
-      <TodoList todos={todos} onDelete={handleDelete} onUpdate={handleUpdate} />
+    <div className="bg-white min-h-screen">
+      <section className="title mb-6 bg-green-500 text-white p-4">
+        <h1 className="text-3xl font-bold"><i class='bx bx-list-check'></i>Todo List</h1>
+        <p className="text-white">Manage your tasks efficiently</p>
+      </section>
+
+      <div className="container mx-auto p-6 ">
+        <TodoForm setTodos={setTodos} />
+        <TodoList todos={todos} onDelete={handleDelete} onUpdate={handleUpdate} />
+      </div>
     </div>
   );
 };
