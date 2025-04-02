@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import 'boxicons';
 
+
 const TodoForm = ({ setTodos }) => {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -12,7 +13,7 @@ const TodoForm = ({ setTodos }) => {
   const [priority, setPriority] = useState('low');
 
   // Use the environment variable for API URL or default to localhost
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
