@@ -23,6 +23,7 @@ export const addTodo = async (newTodo) => {
   }
 };
 
+// Updated updateTodo to handle title, text, time, and priority
 export const updateTodo = async (id, updatedTodo) => {
   try {
     const response = await axios.put(`${API_URL}/todos/${id}`, updatedTodo);
