@@ -7,7 +7,7 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
 
   const togglePin = async () => {
     try {
-      const response = await axios.patch(`http://localhost:3000/api/todos/${todo._id}/pin`);
+      const response = await axios.patch(`http://localhost:4000/api/todos/${todo._id}/pin`);
       setIsPinned(response.data.pinned);
       onUpdate();
     } catch (error) {
@@ -17,7 +17,7 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
 
   const deleteTodo = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/todos/${todo._id}`);
+      await axios.delete(`http://localhost:4000/api/todos/${todo._id}`);
       onDelete(todo._id);
     } catch (error) {
       console.error('Error deleting todo:', error);

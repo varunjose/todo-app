@@ -10,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/todos');
+        const response = await axios.get('http://localhost:4000/api/todos');
         setTodos(response.data);
       } catch (error) {
         console.error('Error fetching todos:', error);
@@ -28,7 +28,7 @@ const HomePage = () => {
     // This will re-fetch the todos
     const fetchTodos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/todos');
+        const response = await axios.get('http://localhost:4000/api/todos');
         setTodos(response.data);
       } catch (error) {
         console.error('Error fetching todos:', error);
