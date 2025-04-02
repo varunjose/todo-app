@@ -26,7 +26,7 @@ const dbURI = process.env.MONGO_URI || 'mongodb+srv://varunjosemadanu:HzR6wX7Y0t
 
 // Connect to MongoDB
 mongoose.connect(dbURI)
-  .then(() => console.log('Connected to MongoDB Atlas'))
+  .then(() => console.log('✅ Connected to MongoDB Atlas'))
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 // Routes
@@ -34,5 +34,5 @@ app.use('/api', todoRoutes);
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
